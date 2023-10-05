@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 const input = document.querySelector('#datetime-picker');
 const start = document.querySelector('button[data-start]');
@@ -23,7 +24,7 @@ const options = {
             start.disabled = false;
         } else if (selectedDate < new Date()) {
             start.disabled = true;
-            window.alert("Please choose a date in the future");
+            Notiflix.Notify.failure("Please choose a date in the future");
         } 
     },
 };
@@ -58,10 +59,10 @@ function value(date) {
         days = hours = minutes = seconds = 0;
     };
     
-    ValueDays.textContent = `${days}`;
-    ValueHours.textContent = `${hours}`;
-    ValueMinutes.textContent = `${minutes}`;
-    ValueSeconds.textContent = `${seconds}`;
+    ValueDays.textContent = String(days).padStart(2, "0");
+    ValueHours.textContent = String(hours).padStart(2, "0");
+    ValueMinutes.textContent = String(minutes).padStart(2, "0");
+    ValueSeconds.textContent = String(seconds).padStart(2, "0");
 };
 
 start.addEventListener('click', () => {
