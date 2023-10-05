@@ -8,7 +8,7 @@ const ValueHours = document.querySelector('span[data-hours]');
 const ValueMinutes = document.querySelector('span[data-minutes]');
 const ValueSeconds = document.querySelector('span[data-seconds]');
 
-let remainderMs = 0;
+let selectedDate = 0;
 
 start.disabled = true;
 const options = {
@@ -17,12 +17,11 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-        console.log(selectedDates[0]);
-        const selectedDate = selectedDates[0];
-        if (selectedDates[0] > new Date()) {
+        selectedDate = selectedDates[0];
+        console.log(selectedDate);
+        if (selectedDate > new Date()) {
             start.disabled = false;
-            idInterval = setInterval(()=>{remainderMs = selectedDates[0] - new Date()}, 1000);
-        } else if (selectedDates[0] < new Date()) {
+        } else if (selectedDate < new Date()) {
             start.disabled = true;
             window.alert("Please choose a date in the future");
         } 
@@ -47,12 +46,28 @@ function convertMs(ms) {
     return { days, hours, minutes, seconds };
 };
 
-start.addEventListener('click', () => {
-    const {days, hours, minutes, seconds} = convertMs(remainderMs);
+function value(date) {
+    const remainderMs = date - new Date()
+    if (remainderMs > 0) {
+        const convert = convertMs(remainderMs);
+        days = convert.days;
+        hours = convert.hours;
+        minutes = convert.minutes;
+        seconds = convert.seconds;
+    } else {
+        days = hours = minutes = seconds = 0;
+    };
+    
     ValueDays.textContent = `${days}`;
     ValueHours.textContent = `${hours}`;
     ValueMinutes.textContent = `${minutes}`;
     ValueSeconds.textContent = `${seconds}`;
+};
+
+start.addEventListener('click', () => {
+
+idInterval = setInterval(() => {value(selectedDate)}, 1000);
 });
+
 
 
