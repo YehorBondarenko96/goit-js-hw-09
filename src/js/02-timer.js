@@ -3,9 +3,14 @@ import "flatpickr/dist/flatpickr.min.css";
 
 const input = document.querySelector('#datetime-picker');
 const start = document.querySelector('button[data-start]');
+const ValueDays = document.querySelector('span[data-days]');
+const ValueHours = document.querySelector('span[data-hours]');
+const ValueMinutes = document.querySelector('span[data-minutes]');
+const ValueSeconds = document.querySelector('span[data-seconds]');
+
+let remainderMs = 0;
 
 start.disabled = true;
-
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -13,12 +18,41 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
         console.log(selectedDates[0]);
+        const selectedDate = selectedDates[0];
         if (selectedDates[0] > new Date()) {
             start.disabled = false;
+            idInterval = setInterval(()=>{remainderMs = selectedDates[0] - new Date()}, 1000);
         } else if (selectedDates[0] < new Date()) {
+            start.disabled = true;
             window.alert("Please choose a date in the future");
-        } else { start.disabled = true };
+        } 
     },
 };
 
 flatpickr(input, options);
+
+
+
+function convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const days = Math.floor(ms / day);
+    const hours = Math.floor((ms % day) / hour);
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+    return { days, hours, minutes, seconds };
+};
+
+start.addEventListener('click', () => {
+    const {days, hours, minutes, seconds} = convertMs(remainderMs);
+    ValueDays.textContent = `${days}`;
+    ValueHours.textContent = `${hours}`;
+    ValueMinutes.textContent = `${minutes}`;
+    ValueSeconds.textContent = `${seconds}`;
+});
+
+

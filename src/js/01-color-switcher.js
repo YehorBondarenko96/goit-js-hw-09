@@ -15,5 +15,5 @@ start.addEventListener('click', () => {
 stop.addEventListener('click', () => {
     start.disabled = false;
     stop.disabled = true;
-   clearInterval(repeater) 
+    clearInterval(repeater) 
 });
