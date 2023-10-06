@@ -14,6 +14,7 @@ let days = 0;
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
+let idInterval;
 
 start.disabled = true;
 const options = {
