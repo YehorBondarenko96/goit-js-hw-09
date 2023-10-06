@@ -25,7 +25,6 @@ function multiplyPromises(event) {
   event.preventDefault();
   let delay = Number(firstDelay.value);
   for (let position = 1; position <= Number(amount.value); position++) {
-    console.log(delay);
     const promis = createPromise(position, delay);
     promis.then(({ position, delay }) => {
       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
