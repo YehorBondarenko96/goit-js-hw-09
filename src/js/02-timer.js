@@ -27,12 +27,12 @@ const options = {
     onClose(selectedDates) {
         selectedDate = selectedDates[0];
         console.log(selectedDate);
+        clearInterval(idInterval);
+        ValueDays.textContent = ValueHours.textContent = ValueMinutes.textContent = ValueSeconds.textContent = addLeadingZero(zero);
         if (selectedDate > new Date()) {
             start.disabled = false;
         } else if (selectedDate < new Date()) {
             start.disabled = true;
-            clearInterval(idInterval);
-            ValueDays.textContent = ValueHours.textContent = ValueMinutes.textContent = ValueSeconds.textContent = addLeadingZero(zero);
             Notiflix.Notify.failure("Please choose a date in the future");
         } 
     },
