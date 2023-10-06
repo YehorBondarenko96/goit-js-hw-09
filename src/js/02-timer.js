@@ -14,6 +14,8 @@ let days = 0;
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
+let idInterval;
+const zero = 0;
 
 start.disabled = true;
 const options = {
@@ -29,6 +31,8 @@ const options = {
             start.disabled = false;
         } else if (selectedDate < new Date()) {
             start.disabled = true;
+            clearInterval(idInterval);
+            ValueDays.textContent = ValueHours.textContent = ValueMinutes.textContent = ValueSeconds.textContent = addLeadingZero(zero);
             Notiflix.Notify.failure("Please choose a date in the future");
         } 
     },
@@ -66,7 +70,7 @@ function valueDate(date) {
         seconds = convert.seconds;
     } else {
         days = hours = minutes = seconds = 0;
-    };
+    }
     
     ValueDays.textContent = addLeadingZero(days);
     ValueHours.textContent = addLeadingZero(hours);
@@ -74,10 +78,11 @@ function valueDate(date) {
     ValueSeconds.textContent = addLeadingZero(seconds);
 };
 
+const listenerButton = () => {
+    idInterval = setInterval(() => { valueDate(selectedDate) }, 1000);
+};
 
-start.addEventListener('click', () => {
-const idInterval = setInterval(() => {valueDate(selectedDate)}, 1000);
-});
+start.addEventListener('click', listenerButton);
 
 
 
