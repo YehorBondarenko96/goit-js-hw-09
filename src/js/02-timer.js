@@ -14,7 +14,6 @@ let days = 0;
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
-let idInterval;
 
 start.disabled = true;
 const options = {
@@ -77,7 +76,7 @@ function valueDate(date) {
 
 
 start.addEventListener('click', () => {
-idInterval = setInterval(() => {valueDate(selectedDate)}, 1000);
+const idInterval = setInterval(() => {valueDate(selectedDate)}, 1000);
 });
 
 
