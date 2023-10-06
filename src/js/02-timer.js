@@ -53,7 +53,7 @@ function addLeadingZero(value) {
 };
 
 function valueDate(date) {
-    const remainderMs = date - new Date()
+    const remainderMs = date.getTime() - new Date().getTime();
     if (remainderMs > 0) {
         const convert = convertMs(remainderMs);
         days = convert.days;
@@ -70,8 +70,8 @@ function valueDate(date) {
     ValueSeconds.textContent = addLeadingZero(seconds);
 };
 
-start.addEventListener('click', () => {
 
+start.addEventListener('click', () => {
 idInterval = setInterval(() => {valueDate(selectedDate)}, 1000);
 });
 
