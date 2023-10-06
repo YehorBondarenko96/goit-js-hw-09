@@ -48,7 +48,11 @@ function convertMs(ms) {
     return { days, hours, minutes, seconds };
 };
 
-function value(date) {
+function addLeadingZero(value) {
+    return String(value).padStart(2, "0")
+};
+
+function valueDate(date) {
     const remainderMs = date - new Date()
     if (remainderMs > 0) {
         const convert = convertMs(remainderMs);
@@ -60,15 +64,15 @@ function value(date) {
         days = hours = minutes = seconds = 0;
     };
     
-    ValueDays.textContent = String(days).padStart(2, "0");
-    ValueHours.textContent = String(hours).padStart(2, "0");
-    ValueMinutes.textContent = String(minutes).padStart(2, "0");
-    ValueSeconds.textContent = String(seconds).padStart(2, "0");
+    ValueDays.textContent = addLeadingZero(days);
+    ValueHours.textContent = addLeadingZero(hours);
+    ValueMinutes.textContent = addLeadingZero(minutes);
+    ValueSeconds.textContent = addLeadingZero(seconds);
 };
 
 start.addEventListener('click', () => {
 
-idInterval = setInterval(() => {value(selectedDate)}, 1000);
+idInterval = setInterval(() => {valueDate(selectedDate)}, 1000);
 });
 
 
