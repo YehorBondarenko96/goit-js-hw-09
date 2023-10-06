@@ -10,10 +10,10 @@ const ValueMinutes = document.querySelector('span[data-minutes]');
 const ValueSeconds = document.querySelector('span[data-seconds]');
 
 let selectedDate = 0;
-let days;
-let hours;
-let minutes;
-let seconds;
+let days = 0;
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
 
 start.disabled = true;
 const options = {
