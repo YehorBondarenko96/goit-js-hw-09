@@ -1,0 +1,29 @@
+input{
+    font-size: Roboto, sans-serif;
+}
+
+span{
+    font-size: Roboto, sans-serif;
+}
+
+.timer{
+    display: flex;
+    justify-content: space-around;
+    width: 237px;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+}
+
+.value{
+    display: flex;
+    font-size: 24px;
+    justify-content: center;
+}
+
+.label{
+    font-size: 12px;
+    text-transform: uppercase;
+}

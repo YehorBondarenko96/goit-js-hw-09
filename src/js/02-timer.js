@@ -14,6 +14,7 @@ let selectedDate = 0;
 start.disabled = true;
 const options = {
     enableTime: true,
+    enableSeconds: false,
     time_24hr: true,
     defaultDate: new Date(),
     minuteIncrement: 1,
