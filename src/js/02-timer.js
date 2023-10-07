@@ -4,10 +4,10 @@ import Notiflix from 'notiflix';
 
 const input = document.querySelector('#datetime-picker');
 const start = document.querySelector('button[data-start]');
-const ValueDays = document.querySelector('span[data-days]');
-const ValueHours = document.querySelector('span[data-hours]');
-const ValueMinutes = document.querySelector('span[data-minutes]');
-const ValueSeconds = document.querySelector('span[data-seconds]');
+const valueDays = document.querySelector('span[data-days]');
+const valueHours = document.querySelector('span[data-hours]');
+const valueMinutes = document.querySelector('span[data-minutes]');
+const valueSeconds = document.querySelector('span[data-seconds]');
 
 let selectedDate = 0;
 let days = 0;
@@ -28,7 +28,7 @@ const options = {
         selectedDate = selectedDates[0];
         console.log(selectedDate);
         clearInterval(idInterval);
-        ValueDays.textContent = ValueHours.textContent = ValueMinutes.textContent = ValueSeconds.textContent = addLeadingZero(zero);
+        valueDays.textContent = valueHours.textContent = valueMinutes.textContent = valueSeconds.textContent = addLeadingZero(zero);
         if (selectedDate > new Date()) {
             start.disabled = false;
         } else if (selectedDate < new Date()) {
@@ -72,10 +72,10 @@ function valueDate(date) {
         days = hours = minutes = seconds = 0;
     }
     
-    ValueDays.textContent = addLeadingZero(days);
-    ValueHours.textContent = addLeadingZero(hours);
-    ValueMinutes.textContent = addLeadingZero(minutes);
-    ValueSeconds.textContent = addLeadingZero(seconds);
+    valueDays.textContent = addLeadingZero(days);
+    valueHours.textContent = addLeadingZero(hours);
+    valueMinutes.textContent = addLeadingZero(minutes);
+    valueSeconds.textContent = addLeadingZero(seconds);
 };
 
 const listenerButton = () => {
